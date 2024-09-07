@@ -71,7 +71,7 @@ with st.container():
                 line = alt.Chart(geo_prov_unadjusted).mark_line().encode(
                     x=alt.X('REF_DATE:T', title='Date', axis=time_axis),
                     y=alt.Y('Job vacancy rate:Q', title='Job vacancy rate (%)'),
-                    color=alt.Color('GEO:N', title='Provinces'),
+                    color=alt.Color('GEO:N', title='Provinces',scale = alt.Scale(scheme='category20')),
                     tooltip=[datetip, regiontip, jvrtip]
                 )
 
@@ -141,7 +141,8 @@ p.a {{
         sector_chart = alt.Chart( sector_df_filtered).mark_bar().encode(
             x=alt.X('NAICS:N', axis=alt.Axis(labels = False), title = 'Industry category' ).sort('-y'),
             y='Job vacancy rate:Q',
-            color = alt.Color('NAICS:N', legend = alt.Legend(title = 'NAICS')),
+            color = alt.Color('NAICS:N', legend = alt.Legend(title = 'NAICS'),
+                              scale = alt.Scale(scheme='category20')),
             tooltip = [
                 alt.Tooltip('NAICS:N', title='Sector: '),
                 alt.Tooltip('Job vacancy rate', title='Job vacancy rate: '),
